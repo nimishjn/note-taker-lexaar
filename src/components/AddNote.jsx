@@ -8,9 +8,14 @@ export default function AddNote() {
 	const dispatch = useDispatch();
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
+	const [error, setError] = useState('');
 
 	const handleAddNote = (e) => {
 		e.preventDefault();
+
+		if (notes.map((element) => element.title).includes(title))
+			return setError('Title should be unique!');
+		else setError('');
 
 		const id = generateUniqueId(notes.map((e) => e.id));
 
@@ -22,6 +27,8 @@ export default function AddNote() {
 					description: description,
 				})
 			);
+			setTitle('');
+			setDescription('');
 		} else {
 			console.log('Unique Id not available!');
 		}
@@ -34,7 +41,7 @@ export default function AddNote() {
 					Title <span className='text-red-600'>*</span>
 				</label>
 				<input
-					className='border-gray-50 border-solid border-2 p-3 rounded-md outline-none active:border-gray-500 focus:border-gray-400 mb-4'
+					className='border-gray-50 border-solid border-1 p-3 rounded-md outline-none active:border-gray-500 focus:border-gray-400 mb-4'
 					type='text'
 					placeholder='Enter here'
 					value={title}
@@ -50,7 +57,7 @@ export default function AddNote() {
 					)}
 				</label>
 				<textarea
-					className='border-gray-50 border-solid border-2 p-3 rounded-md outline-none active:border-gray-500 focus:border-gray-400 resize-y'
+					className='border-gray-50 border-solid border-1 p-3 rounded-md outline-none active:border-gray-500 focus:border-gray-400 resize-y'
 					type='text'
 					placeholder='Enter here'
 					value={description}
@@ -62,8 +69,8 @@ export default function AddNote() {
 				<b>Note:</b> Description is mandatory if title length is less
 				than 10 characters.
 			</p>
+			<p className='text-red-600 text-sm text-center'>{error || ''}</p>
 			<button
-				onClick={() => console.log('Hello')}
 				className='p-2 rounded-md border-0 bg-blue-200 cursor-pointer text-base hover:bg-blue-300 transition-all active:bg-blue-400'
 				type='submit'
 			>

@@ -21,14 +21,15 @@ export const notes = createSlice({
 			localStorage.setItem('notes', JSON.stringify(state.notes));
 		},
 		editNote: (state, action) => {
-			state.notes.map((note) => {
+			const newNotes = state.notes.map((note) => {
 				if (note.id === action.payload.id) {
 					note = action.payload;
 				}
 
 				return note;
 			});
-			localStorage.setItem('notes', JSON.stringify(state.notes));
+			state.notes = newNotes;
+			localStorage.setItem('notes', JSON.stringify(newNotes));
 		},
 	},
 });

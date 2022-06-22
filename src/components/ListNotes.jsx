@@ -14,8 +14,6 @@ export default function ListNotes() {
 		dispatch(deleteNote(noteId));
 	};
 
-	
-
 	if (notes.length === 0) {
 		return <NoNotes />;
 	}
@@ -40,7 +38,9 @@ export default function ListNotes() {
 								{note.description.length > 120 && '...'}
 							</p>
 						) : (
-							<i className='grow break-words mt-2 mb-0 text-gray-500 text-sm'>No description.</i>
+							<i className='grow break-words mt-2 mb-0 text-gray-500 text-sm'>
+								No description.
+							</i>
 						)}
 						<div className='flex items-center justify-center'>
 							<Link
