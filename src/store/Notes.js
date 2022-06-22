@@ -16,10 +16,24 @@ export const notes = createSlice({
 			state.notes = state.notes.filter((e) => e.id !== action.payload);
 			localStorage.setItem('notes', JSON.stringify(state.notes));
 		},
+		deleteAllNotes: (state) => {
+			state.notes = [];
+			localStorage.setItem('notes', JSON.stringify(state.notes));
+		},
+		editNote: (state, action) => {
+			state.notes.map((note) => {
+				if (note.id === action.payload.id) {
+					note = action.payload;
+				}
+
+				return note;
+			});
+			localStorage.setItem('notes', JSON.stringify(state.notes));
+		},
 	},
 });
 
 // Action creators are generated for each case reducer function
-export const { addNote, deleteNote } = notes.actions;
+export const { addNote, deleteNote, deleteAllNotes, editNote } = notes.actions;
 
 export default notes.reducer;
