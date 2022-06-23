@@ -46,12 +46,12 @@ export default function Note() {
 			) : (
 				<>
 					{title ? (
-						<h1 className='text-center text-4xl'>{title}</h1>
+						<h1 className='text-center text-4xl break-words'>{title}</h1>
 					) : (
 						<WaitingBox />
 					)}
 					{description ? (
-						<p className=''>{description}</p>
+						<p className='break-words'>{description}</p>
 					) : (
 						<WaitingBox />
 					)}
