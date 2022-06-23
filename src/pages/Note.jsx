@@ -46,14 +46,18 @@ export default function Note() {
 			) : (
 				<>
 					{title ? (
-						<h1 className='text-center text-4xl break-words'>{title}</h1>
+						<h1 className='text-center text-4xl break-words'>
+							{title}
+						</h1>
 					) : (
 						<WaitingBox />
 					)}
 					{description ? (
 						<p className='break-words'>{description}</p>
 					) : (
-						<WaitingBox />
+						<i className='grow break-words mt-2 mb-0 text-gray-500'>
+							No description.
+						</i>
 					)}
 					<div className='flex gap-2 justify-center'>
 						<button
